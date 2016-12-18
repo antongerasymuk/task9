@@ -7,9 +7,12 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+use yii\caching\Cache;
 use frontend\assets\AppAsset;
-use common\widgets\Alert;
 
+//$cache = Yii::$app->cache;
+//$cache->set(1234,1234);
+//Cache::set(1234,1234);
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -26,44 +29,21 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => 'My Company',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
-    ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';
-    }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-    ]);
-    NavBar::end();
-    ?>
+   
+    <div class="container" >
+    <a class="btn btn-default" href="/university/">Universities</a>
+    <a class="btn btn-default" href="/department/">Departments</a>
+    <a class="btn btn-default" href="/homework/">Homework</a>
+    <a class="btn btn-default" href="/subject/">Subject</a>
+    <a class="btn btn-default" href="/teacher/">Teacher</a>
+    <a class="btn btn-default" href="/student/">Student</a>
+    <a class="btn btn-default" href="/site/migrate-up/">MakeDB</a>
+    <p></p>
+    
 
-    <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <?= Alert::widget() ?>
         <?= $content ?>
     </div>
 </div>

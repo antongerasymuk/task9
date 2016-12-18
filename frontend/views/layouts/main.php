@@ -31,17 +31,24 @@ $theme = $this->theme;
 </head>
 <body>
   <?php $this->beginBody() ?>
+
   <nav class="light-blue lighten-1" role="navigation">
     <div class="container">
       <div class="nav-wrapper"><a id="logo-container" href="#" class="brand-logo"><?php echo Html::encode(\Yii::$app->name); ?></a>
-	  		<?php
+	  		
+
+        <?php
 						echo Menu::widget([
 						    'options' => ['id' => "nav-mobile", 'class' => 'right side-nav'],
 						    'items' => [
-						        ['label' => 'Home', 'url' => ['site/index']],
-						        ['label' => 'About', 'url' => ['site/about']],
-						        ['label' => 'Contact', 'url' => ['site/contact']],
-						        ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+						        ['label' => 'Universities', 'url' => ['university/']],
+						        ['label' => 'Departments', 'url' => ['department/']],
+						        ['label' => 'Homework', 'url' => ['homework/']],
+						        ['label' => 'Subject', 'url' => ['subject/']],
+                    ['label' => 'Teacher', 'url' => ['teacher/']],
+                    ['label' => 'Student', 'url' => ['student/']],
+                    ['label' => 'MakeDB', 'url' => ['site/migrate-up/']],
+
 						    ],
 						]);
 					?>
@@ -49,20 +56,7 @@ $theme = $this->theme;
       </div>
     </div>
   </nav>
-  <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-      <br><br>
-      <h1 class="header center orange-text"><?php echo Html::encode(\Yii::$app->name); ?></h1>
-      <div class="row center">
-        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-      </div>
-      <div class="row center">
-        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
-      </div>
-      <br><br>
-
-    </div>
-  </div>
+  
 
   <div class="container">
     <div class="section">
