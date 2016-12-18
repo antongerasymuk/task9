@@ -19,11 +19,6 @@ class MaterializeAsset extends AssetBundle
         //'css/site.css',
     ];
 
-    public $js = [
-        //'https://code.jquery.com/jquery-2.1.1.min.js'
-    ];
-    public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
-    ];
+    public $js = [];
+    public $depends = [];
 }

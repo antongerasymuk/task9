@@ -26,9 +26,6 @@ $theme = $this->theme;
 	
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   
-  <!-- CSS  -->
-  <link href="<?php echo $this->theme->baseUrl ?>/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="<?php echo $this->theme->baseUrl ?>/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
   <?php $this->beginBody() ?>
@@ -137,10 +134,10 @@ $theme = $this->theme;
   </footer>  
 
   <!--  Scripts-->
+  <?php $this->registerJsFile($theme->getUrl('/js/init.js'), ['depends' => [\yii\web\JqueryAsset::className()]]); ?>
   <?php $this->registerJsFile($theme->getUrl('/js/materialize.js'), ['depends' => [frontend\assets\MaterializeAsset::className()]]); ?>
-  <?php $this->registerJsFile($theme->getUrl('/js/init.js'), ['depends' => [frontend\assets\MaterializeAsset::className()]]); ?>
-
   
+   
   <?php $this->endBody() ?>
   </body>
 </html>
