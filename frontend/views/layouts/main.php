@@ -5,6 +5,9 @@ use yii\widgets\Menu;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\MaterializeAsset;
 use \common\widgets\InformColumn;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use \yii\web\YiiAsset;
 
 /**
  * @var $this \yii\base\View
@@ -33,21 +36,52 @@ $theme = $this->theme;
   <nav class="light-blue lighten-1" role="navigation">
     <div class="container">
       <div class="nav-wrapper"><a id="logo-container" href="#" class="brand-logo"><?php echo Html::encode(\Yii::$app->name); ?></a>
-	  		
+       <?php
+     
+       $menuItems = [];
+       if (Yii::$app->user->isGuest) {
+        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] =  ['label' => 'Signup', 'url' => ['site/signup']];
+      } else {
+        $menuItems = [
+          ['label' => 'Universities', 'url' => ['university/']],
+          ['label' => 'Departments', 'url' => ['department/']],
+          ['label' => 'Homework', 'url' => ['homework/']],
+          ['label' => 'Subject', 'url' => ['subject/']],
+          ['label' => 'Teacher', 'url' => ['teacher/']],
+          ['label' => 'Student', 'url' => ['student/']],
+          ['label' => 'MakeDB', 'url' => ['site/migrate-up/']],
+          ['label' => 'Logout (' . Yii::$app->user->identity->username . ')', 'url' => ['/site/logout']
+          //'template' => '<a href="{url}" data-method="POST">{label}</a>',     
+
+                ],
+          //['label' => 'Logout (' . Yii::$app->user->identity->username .')', 'url'=> ['//user/security/logout'],'linkOptions' => ['data-method' => 'post']],
+
+          //'<li>' . Html::beginForm(['/site/logout'], 'post') . Html::submitButton('Logout (' . Yii::$app->user->identity->username . ')',
+          //      ['class' => 'btn btn-link logout'] ) . Html::endForm() . '</li>' 
+          ];
+        }
+
+        //'<li>'
+        //. Html::beginForm(['/site/logout'], 'post')
+        //. Html::submitButton(
+        //  'Logout (' . Yii::$app->user->identity->username . ')',
+       //   ['class' => 'btn btn-link logout']
+       //   )
+       // . Html::endForm()
+       // . '</li>';
+     // }//
+      //echo Nav::widget([
+      //  'options' => ['class' => 'navbar-nav navbar-right'],
+      //  'items' => $menuItems,
+      //  ]);
+      //NavBar::end();
+      ?>
 
         <?php
 						echo Menu::widget([
 						    'options' => ['id' => "nav-mobile", 'class' => 'right side-nav'],
-						    'items' => [
-						        ['label' => 'Universities', 'url' => ['university/']],
-						        ['label' => 'Departments', 'url' => ['department/']],
-						        ['label' => 'Homework', 'url' => ['homework/']],
-						        ['label' => 'Subject', 'url' => ['subject/']],
-                    ['label' => 'Teacher', 'url' => ['teacher/']],
-                    ['label' => 'Student', 'url' => ['student/']],
-                    ['label' => 'MakeDB', 'url' => ['site/migrate-up/']],
-
-						    ],
+						    'items' => $menuItems,
 						]);
 					?>
           <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>

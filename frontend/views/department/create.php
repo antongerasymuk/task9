@@ -22,7 +22,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 		<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-		
 		<?= $form->field($model, 'university_id')->widget(Select2::classname(), [
 			'data'          => ModelMapHelper::getIdTitleMap(\common\models\University::class),
 			'language'      => 'en',

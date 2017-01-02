@@ -9,6 +9,17 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
         ],
+    
+
+    'authClientCollection' => [
+        'class' => 'yii\authclient\Collection',
+        'clients' => [
+            'facebook' => [
+                'class' => 'yii\authclient\clients\Facebook',
+                'clientId' => '349268725442351',
+                'clientSecret' => '1776833fda10d1d9088a087dd9daeeca',
+            ],
+        ],
     ],
-   
+    ],
 ];

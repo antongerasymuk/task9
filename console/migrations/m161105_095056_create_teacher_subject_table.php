@@ -3,7 +3,7 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation for table `teacher_subject_table`.
+ * Handles the creation for table `teacher_subject`.
  */
 class m161105_095056_create_teacher_subject_table extends Migration
 {
@@ -42,6 +42,6 @@ class m161105_095056_create_teacher_subject_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('teacher_subject_table');
+        $this->dropTable('teacher_subject');
     }
 }
