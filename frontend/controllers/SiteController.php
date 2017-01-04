@@ -89,6 +89,8 @@ class SiteController extends Controller
                     $user = new User([
                         'username' => $attributes['email'],
                         'email' => $attributes['email'],
+                        'first_name' => $attributes['email'],
+                        'laste_name' => $attributes['email'],
                         'password' => $password,
                     ]);
                     $user->generateAuthKey();

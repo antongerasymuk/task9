@@ -11,7 +11,7 @@ use yii\web\Controller;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\filters\AccessControl;
 /**
  * CountryController implements the CRUD actions for Country model.
  */
@@ -23,10 +23,23 @@ class DepartmentController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'create', 'view', 'delete', 'update'],
+                'denyCallback' => function ($rule, $action) {  throw new \Exception('У вас нет доступа к этой странице'); },
+                'rules' => [
+                    [
+                        'actions' => ['index', 'create', 'view', 'delete', 'update'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                     
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'logout' => ['get'],
                 ],
             ],
         ];
