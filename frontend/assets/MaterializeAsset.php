@@ -20,5 +20,6 @@ class MaterializeAsset extends AssetBundle
     ];
 
     public $js = [];
-    public $depends = [];
+    public $depends = [
+    'yii\bootstrap\BootstrapAsset'];
 }

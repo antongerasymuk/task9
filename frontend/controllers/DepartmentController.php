@@ -13,7 +13,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 /**
- * CountryController implements the CRUD actions for Country model.
+ * DepartmentController implements the CRUD actions for Country model.
  */
 class DepartmentController extends Controller
 {
@@ -26,12 +26,17 @@ class DepartmentController extends Controller
             'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['index', 'create', 'view', 'delete', 'update'],
-                'denyCallback' => function ($rule, $action) {  throw new \Exception('У вас нет доступа к этой странице'); },
+                'denyCallback' => function ($rule, $action) {  throw new \Exception('You do not have access to this page'); },
                 'rules' => [
                     [
-                        'actions' => ['index', 'create', 'view', 'delete', 'update'],
+                        'actions' => ['index','view'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['user'],
+                    ],
+                    [
+                        'actions' => ['create', 'delete', 'update'],
+                        'allow' => true,
+                        'roles' => ['admin'],
                     ],
                      
                 ],
@@ -69,9 +74,13 @@ class DepartmentController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        if (!\Yii::$app->user->can('updateRows')) {
+            throw new \Exception('Access denied');
+        } else {
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+                ]);
+        }
     }
 
     /**

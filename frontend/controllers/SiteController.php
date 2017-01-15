@@ -97,12 +97,16 @@ class SiteController extends Controller
                     $user->generatePasswordResetToken();
                     $transaction = $user->getDb()->beginTransaction();
                     if ($user->save()) {
+                        $authManager = Yii::$app->authManager;
+                        $userRole = $authManager->getRole('user');
+                        //$authManager->assign($userRole, $user->id); 
+
                         $auth = new Auth([
                             'user_id' => $user->id,
                             'source' => $client->getId(),
                             'source_id' => (string)$attributes['id'],
                         ]);
-                        if ($auth->save()) {
+                        if (($auth->save()) && ($authManager->assign($userRole, $user->id))) {
                             $transaction->commit();
                             Yii::$app->user->login($user);
                         } else {
