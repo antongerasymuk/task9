@@ -13,7 +13,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
 /**
- * HomeworkController implements the CRUD actions for Country model.
+ * CountryController implements the CRUD actions for Country model.
  */
 class HomeworkController extends Controller
 {
@@ -28,7 +28,7 @@ class HomeworkController extends Controller
                 'only' => ['index', 'create', 'view', 'delete', 'update'],
                 'denyCallback' => function ($rule, $action) {  throw new \Exception('You do not have access to this page'); },
                 'rules' => [
-                    [
+                   [
                         'actions' => ['index','view'],
                         'allow' => true,
                         'roles' => ['user'],
@@ -38,8 +38,6 @@ class HomeworkController extends Controller
                         'allow' => true,
                         'roles' => ['admin'],
                     ],
-                     
-                ],
                      
                 ],
             ],
@@ -77,13 +75,9 @@ class HomeworkController extends Controller
      */
     public function actionView($id)
     {
-        if (!\Yii::$app->user->can('updateRows')) {
-            throw new \Exception('Access denied');
-        } else {
-            return $this->render('view', [
-                'model' => $this->findModel($id),
-                ]);
-        }
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
     }
 
     /**

@@ -1,7 +1,29 @@
 <?php
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+     'modules' => [
+        'admin' => [
+            'class' => 'mdm\admin\Module',
+
+        ]
+    ],
+    /*'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            'site/*',
+            'admin/*',
+            'some-controller/some-action',
+            
+        ],
+        
+    ],*/
     'components' => [
+        'requestcrawler' => [
+            'class' => 'common\components\RequestCrawler',
+            'path' => '',
+            'type' => 'xml'
+            ],
+        
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

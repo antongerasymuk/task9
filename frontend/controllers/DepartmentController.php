@@ -57,6 +57,13 @@ class DepartmentController extends Controller
     public function actionIndex()
     {
                 
+        Yii::$app->requestcrawler->saveToFile(array('a'=>'a', 'b'=>'b' ,'c'=> 'c'));
+ 
+        $encoded = Yii::$container->get('requestCrawler')->serialize->encode(array('a'=>'a', 'b'=>'b' ,'c'=> 'c'));
+        $decode = Yii::$container->get('requestCrawler')->serialize->decode($encoded);
+        $path = Yii::$container->get('requestCrawler')->path;
+        Yii::$container->get('requestCrawler')->serialize->saveFile($encoded, $path);
+         
         $dataProvider = new ActiveDataProvider([
             'query' => Department::find(),
         ]);

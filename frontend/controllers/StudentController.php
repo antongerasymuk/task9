@@ -39,9 +39,6 @@ class StudentController extends Controller
                         'allow' => true,
                         'roles' => ['admin'],
                     ],
-                     
-                ],
-                     
                 ],
             ],
             'verbs' => [
