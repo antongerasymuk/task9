@@ -7,6 +7,7 @@ return [
 
         ]
     ],
+
     /*'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
@@ -17,12 +18,19 @@ return [
         ],
         
     ],*/
+
+    
+ 
+
     'components' => [
-        'requestcrawler' => [
-            'class' => 'common\components\RequestCrawler',
-            'path' => '',
-            'type' => 'xml'
-            ],
+        
+        //Service Locator
+      		  
+        'requestCrawler' => frontend\service\RequestCrawlerServiceBuilder::build(
+            [
+                'class' => 'frontend\service\XmlSerialize',                 
+            ], 
+        '/files'),
         
         'cache' => [
             'class' => 'yii\caching\FileCache',

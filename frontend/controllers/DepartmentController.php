@@ -57,13 +57,8 @@ class DepartmentController extends Controller
     public function actionIndex()
     {
                 
-        Yii::$app->requestcrawler->saveToFile(array('a'=>'a', 'b'=>'b' ,'c'=> 'c'));
- 
-        $encoded = Yii::$container->get('requestCrawler')->serialize->encode(array('a'=>'a', 'b'=>'b' ,'c'=> 'c'));
-        $decode = Yii::$container->get('requestCrawler')->serialize->decode($encoded);
-        $path = Yii::$container->get('requestCrawler')->path;
-        Yii::$container->get('requestCrawler')->serialize->saveFile($encoded, $path);
-         
+       
+        
         $dataProvider = new ActiveDataProvider([
             'query' => Department::find(),
         ]);
@@ -98,8 +93,16 @@ class DepartmentController extends Controller
     public function actionCreate()
     {
         $model = new Department();
+     
+        $request = Yii::$app->request;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        //$requestCrawler = Yii::$app->get('requestCrawler')->serialize->encodeAndSave($array);
+        //var_dump($requestCrawler);
+        $requestCrawler = Yii::$container->get('requestCrawler')->serialize->encodeAndSave($request);
+        //var_dump($requestCrawler);
+        //exit;
+
+        if ($model->load($request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [

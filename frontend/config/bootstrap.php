@@ -1,12 +1,9 @@
 <?php 
 
-//Container
+//Container for dependency injection
 
- Yii::$container->set(\frontend\SerializeInterface::class, \frontend\JsonSerialize::class);
-
-
+Yii::$container->set(\frontend\service\SerializeInterface::class, \frontend\service\JsonSerialize::class);
 Yii::$container->set('requestCrawler', [
-     'class' => \frontend\RequestCrawler::class,
-     'serialize' => new \frontend\JsonSerialize(),
-     'path' => '/upload/'
- ]);
+    'class' => \frontend\service\RequestCrawler::class,
+    'path' => '/files'
+]);
