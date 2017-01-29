@@ -6,15 +6,6 @@
  
  class RequestCrawlerServiceBuilder
  {
-     /**
-      * @param $serializerConfig
-      * @param $pathToSave
-      * @return Closure
-      * @internal param $serializerType
-      * @internal param SerializerInterface $serializer
-      * @internal param string $filePath
-      * @internal param $ip
-      */
     public static function build($serializerConfig, $pathToSave)
     {
        
