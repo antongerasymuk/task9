@@ -25,12 +25,19 @@ return [
     'components' => [
         
         //Service Locator
-      		  
+     		  
         'requestCrawler' => frontend\service\RequestCrawlerServiceBuilder::build(
             [
                 'class' => 'frontend\service\XmlSerialize',                 
-            ], 
-        '/files'),
+            ],
+
+            '/files',
+            [
+            'formfilewrite' => function ($event) {
+            	    Yii::trace('file using  serialization '.get_class($event->sender->serialize).' have saved in '.$event->sender->serialize->fileName);
+                }
+            ]
+        ),
         
         'cache' => [
             'class' => 'yii\caching\FileCache',

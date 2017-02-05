@@ -1,0 +1,1 @@
+{"_csrf-frontend":"bEtIRi5YbnkBHTkcGxcdLT0HfwVhMyxOK35\/dVoHXRQAcxwUaj86Kg==","Department":{"name":"wqwqsa","university_id":"1"}}
