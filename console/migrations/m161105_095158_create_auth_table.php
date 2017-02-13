@@ -26,7 +26,6 @@ class m161105_095157_create_auth_table extends Migration
             'id',
             'CASCADE'
         );
-
     }
  
     /**

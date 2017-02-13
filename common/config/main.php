@@ -19,12 +19,12 @@ return [
         
     ],*/
 
-    
- 
+   
 
     'components' => [
         
         //Service Locator
+       
      		  
         'requestCrawler' => frontend\service\RequestCrawlerServiceBuilder::build(
             [
@@ -45,6 +45,10 @@ return [
          'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+
+            'rules' => [
+            ['class' => 'yii\rest\UrlRule', 'controller' => 'test']
+            ]
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',

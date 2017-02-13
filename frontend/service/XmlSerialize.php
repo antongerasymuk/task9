@@ -2,6 +2,7 @@
 
 namespace frontend\service;
 use SimpleXMLElement;
+use \yii\base\Event;
 
 class XmlSerialize implements SerializeInterface
 {
@@ -18,10 +19,11 @@ class XmlSerialize implements SerializeInterface
         $encoded = $xml->asXML();
               
         $this->fileName = __DIR__.$this->path.'/'.time().'.txt';
-        $event = new \yii\base\Event;
+       
+
                 
         if (file_put_contents($this->fileName, $encoded , FILE_APPEND|LOCK_EX)) {
-            $this->component->trigger(self::FORM_FILE_WRITE);
+            $this->component->trigger(self::FORM_FILE_WRITE, new Event(['data' => 'hello']));
             return true;
         }
         return false;
