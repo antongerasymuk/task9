@@ -63,14 +63,19 @@ class  TestController extends Controller {
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $basearray = \common\models\Student::find()->asArray()->all();
-
-        foreach ($basearray as $key => $value) {
-            $basearray[$key]['fullname'] =  $basearray[$key]['name'].' '.$basearray[$key]['surname'];
-            unset($basearray[$key]['name'], $basearray[$key]['surname']);
-        }
-
+        
+        if (array_key_exists('admin',\Yii::$app->authManager->getRolesByUser(\Yii::$app->user->id))) {
+        	foreach ($basearray as $key => $value) {
+        		$basearray[$key]['fullname'] =  $basearray[$key]['name'].' '.$basearray[$key]['surname'];
+        		unset($basearray[$key]['name'], $basearray[$key]['surname']);
+        	}
         // This will return in JSON:
         return $basearray;
+        }  
+
+        throw new \yii\web\ForbiddenHttpException('You cannot access for Index action!'); 
+
+        
 
     }
 }
