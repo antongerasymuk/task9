@@ -34,6 +34,18 @@ class  TestController extends Controller {
                         return null;
                     },
             ],
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'only' => ['index'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index'],
+                        'roles' => ['admin'],
+                        'verbs' => ['GET', 'POST']
+                    ],
+                ],
+            ],
         ];
     }
 
