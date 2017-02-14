@@ -18,24 +18,34 @@ return [
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
+            'enableSession' => false,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',
         ],
+        
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
+                    'levels' => ['error', 'warning','trace'],
                 ],
             ],
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        
+        'view' => [
+            'theme' => [
+                'basePath' => '@webroot/themes/materialize',
+                'baseUrl' => '@web/themes/materialize',
+            ],
+        ],
+   
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
